@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="DevSquared.Views.RegisterView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:DevSquared.Views"
+             xmlns:CustomControls="clr-namespace:DevSquared.CustomControls"
+             mc:Ignorable="d"
+             d:DesignWidth="1600"
+             d:DesignHeight="900"
+             Background="White">
+    <Grid VerticalAlignment="Center"
+          HorizontalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid.Resources>
+        </Grid.Resources>
+        <CustomControls:CustomTextBox Grid.Row="0"
+                                      Placeholder="Username"
+                                      Text="{Binding Username, Mode=TwoWay}"/>
+        <CustomControls:CustomPasswordBox Grid.Row="2"
+                                          Placeholder="Password"
+                                          Password="{Binding Password, Mode=TwoWay}"/>
+        <CustomControls:CustomPrimaryButton Grid.Row="4"
+                                            Content="Register"
+                                            Command="{Binding RegisterCommand}"/>
+        <CustomControls:CustomSecondaryButton Grid.Row="6"
+                                              Content="Cancel"
+                                              Command="{Binding CancelCommand}"/>
+    </Grid>
+</UserControl>

@@ -1,0 +1,105 @@
+﻿<UserControl x:Class="DevSquared.UserControls.TitleBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:DevSquared.UserControls"
+             xmlns:Converters="clr-namespace:DevSquared.Converters"
+             xmlns:CustomControls="clr-namespace:DevSquared.CustomControls"
+             mc:Ignorable="d"
+             Background="White"
+             d:DesignWidth="1600"
+             d:DesignHeight="32">
+    <Border Background="#2E2E2E"
+            BorderBrush="Transparent"
+            BorderThickness="0"
+            Height="32">
+        <Border.InputBindings>
+            <MouseBinding MouseAction="LeftClick"
+                          Command="{Binding DragMoveCommand}"/>
+            <MouseBinding MouseAction="LeftDoubleClick"
+                          Command="{Binding MaximizeCommand}"/>
+            <MouseBinding/>
+        </Border.InputBindings>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0"
+                  HorizontalAlignment="Left">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.Resources>
+                    <Converters:ViewModelToVisibility x:Key="ToggleVisibility"/>
+                    <Style TargetType="{x:Type CustomControls:CustomPrimaryButton}">
+                        <Setter Property="Height"
+                                Value="24"/>
+                        <Setter Property="CornerRadius"
+                                Value="5"/>
+                        <Setter Property="Visibility"
+                                Value="{Binding CurrentViewModel, Converter={StaticResource ToggleVisibility}}"/>
+                        <Setter Property="Margin"
+                                Value="5 0 0 0"/>
+                        <Setter Property="Padding"
+                                Value="10 0 10 0"/>
+                    </Style>
+                </Grid.Resources>
+                <CustomControls:CustomPrimaryButton Grid.Column="0"
+                                                    Content="Home"
+                                                    Command="{Binding HomeCommand}"/>
+                <CustomControls:CustomPrimaryButton Grid.Column="1"
+                                                    Content="Courses"
+                                                    Command="{Binding CoursesCommand}"/>
+                <CustomControls:CustomPrimaryButton Grid.Column="2"
+                                                    Content="Documentation"
+                                                    Command="{Binding DocumentationCommand}"/>
+                <CustomControls:CustomPrimaryButton Grid.Column="3"
+                                                    Content="Workspace"
+                                                    Command="{Binding WorkspaceCommand}"/>
+                <CustomControls:CustomPrimaryButton Grid.Column="4"
+                                                    Content="Account"
+                                                    Command="{Binding AccountCommand}"/>
+                <CustomControls:CustomPrimaryButton Grid.Column="5"
+                                                    Content="Log Out"
+                                                    Command="{Binding LogoutCommand}"/>
+            </Grid>
+            <Grid Grid.Column="2"
+                  HorizontalAlignment="Right">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="50"/>
+                </Grid.ColumnDefinitions>
+                <CustomControls:CustomPrimaryButton Grid.Column="0"
+                                                    CornerRadius="0"
+                                                    Command="{Binding MinimizeCommand}">
+                    <Image Source="pack://application:,,,/DevSquared;component/Images/Minimize.png"
+                           Width="8"
+                           Height="8"/>
+                </CustomControls:CustomPrimaryButton>
+                <CustomControls:CustomPrimaryButton Grid.Column="1"
+                                                    CornerRadius="0"
+                                                    Command="{Binding MaximizeCommand}">
+                    <Image Source="pack://application:,,,/DevSquared;component/Images/Maximize.png"
+                           Width="8"
+                           Height="8"/>
+                </CustomControls:CustomPrimaryButton>
+                <CustomControls:CustomPrimaryButton Grid.Column="2"
+                                                    CornerRadius="0"
+                                                    Command="{Binding CloseCommand}">
+                    <Image Source="pack://application:,,,/DevSquared;component/Images/Close.png"
+                           Width="8"
+                           Height="8"/>
+                </CustomControls:CustomPrimaryButton>
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>
